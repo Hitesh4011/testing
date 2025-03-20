@@ -20,41 +20,41 @@ st.caption(
 
 
 # Load the trained ensemble model from the saved pickle file.
-modelfile = "./voting_model.pkl"
-voting_model = pickle.load(open(modelfile, "rb"))
+# modelfile = "./voting_model.pkl"
+# voting_model = pickle.load(open(modelfile, "rb"))
 
 # Caching the model for faster loading
 @st.cache_resource
 
 
 # Define the function for the wait time predictor using the loaded model. This function takes in the input parameters and returns a predicted wait time in days.
-def waitime_predictor(
-    purchase_dow,
-    purchase_month,
-    year,
-    product_size_cm3,
-    product_weight_g,
-    geolocation_state_customer,
-    geolocation_state_seller,
-    distance,
-):
-    prediction = voting_model.predict(
-        np.array(
-            [
-                [
-                    purchase_dow,
-                    purchase_month,
-                    year,
-                    product_size_cm3,
-                    product_weight_g,
-                    geolocation_state_customer,
-                    geolocation_state_seller,
-                    distance,
-                ]
-            ]
-        )
-    )
-    return round(prediction[0])
+# def waitime_predictor(
+#     purchase_dow,
+#     purchase_month,
+#     year,
+#     product_size_cm3,
+#     product_weight_g,
+#     geolocation_state_customer,
+#     geolocation_state_seller,
+#     distance,
+# ):
+#     prediction = voting_model.predict(
+#         np.array(
+#             [
+#                 [
+#                     purchase_dow,
+#                     purchase_month,
+#                     year,
+#                     product_size_cm3,
+#                     product_weight_g,
+#                     geolocation_state_customer,
+#                     geolocation_state_seller,
+#                     distance,
+#                 ]
+#             ]
+#         )
+#     )
+#     return round(prediction[0])
 
 
 # Define the input parameters using Streamlit's sidebar. These parameters include the purchased day of the week, month, and year, product size, weight, geolocation state of the customer and seller, and distance.
@@ -88,16 +88,17 @@ with st.container():
 
     # When the submit button is clicked, call the wait time predictor function and display the predicted wait time in the output container.
     if submit:
-        prediction = waitime_predictor(
-            purchase_dow,
-            purchase_month,
-            year,
-            product_size_cm3,
-            product_weight_g,
-            geolocation_state_customer,
-            geolocation_state_seller,
-            distance,
-        )
+        # prediction = waitime_predictor(
+        #     purchase_dow,
+        #     purchase_month,
+        #     year,
+        #     product_size_cm3,
+        #     product_weight_g,
+        #     geolocation_state_customer,
+        #     geolocation_state_seller,
+        #     distance,
+        # )
+        prediction = 0
         with st.spinner(text="This may take a moment..."):
             st.write(prediction)
     import pandas as pd
